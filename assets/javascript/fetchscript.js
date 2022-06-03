@@ -25,12 +25,14 @@ let news = {
         // console.log(newsContent)
 
         const { name } = newsContent.articles[0].source
-        const { author, title, url, content } = newsContent.articles[0]
+        const { author, title, url, content, urlToImage } = newsContent.articles[0]
 
 
         document.getElementById("author").innerText = "Author: " + author + ""
         document.getElementById("searchTitle").innerText = "Title: " + title + ""
         document.getElementById('searchContent').innerText = content
+        document.getElementById('articleURL').innerText = url
+        document.getElementById('imageURL').innerText = urlToImage
 
         // Sample syntax to display elements
         // document.getElementById("userSearchData").innerText = "Title: " + title + ""
@@ -46,7 +48,7 @@ let news = {
   // function to search for crypto data.
   // End point are the search parameters passed in the URL for specific articles/information
   // https://coinlayer.com/documentation
-  fetchCrypto: function (term) {
+  fetchCryptoPrice: function (term) {
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/live?&symbols=' + term + '&access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
       .then(response => {
         if (response.ok) return response.json()
@@ -58,7 +60,7 @@ let news = {
         console.log(cryptoData)
 
 
-        // Display Crypto Price for search term
+        // Display Crypto Price for search term. Problem the way to extra the price is the name of the crypto itself, How do you list the term as the thing to pull out?
         document.getElementById("cryptoPrice1").innerText = "Current Price of BTC: " + cryptoData.rates
         // document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH
         // document.getElementById("cryptoPrice3").innerText = "Current Price of BNB: " + BNB
@@ -66,7 +68,25 @@ let news = {
         // document.getElementById("cryptoPrice5").innerText = "Current Price of ADA: " + ADA
       })
 
+  },
+
+  fetchCryptoName: function (term) {
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/list?&symbols=' + term + '&access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Term not accepeted')
+      })
+      .then(data => {
+        var nameData = JSON.parse(data.contents)
+        console.log(nameData)
+
+        document.getElementById('cryptoPrice2').innerText = "Full Market Name: " + nameData.crypto.BTC.name_full
+
+
+      })
+
   }
+
 }
 
 // Grabbing user input for search terms
@@ -75,9 +95,27 @@ document.getElementById("searchBtn").onclick = function () {
 
   var inputEl = document.getElementById('searchTerm').value
   news.fetchNews(inputEl)
-  news.fetchCrypto(inputEl)
+  news.fetchCryptoPrice(inputEl)
+  news.fetchCryptoName(inputEl)
 
 }
+
+// search by enter button
+
+var input = document.getElementById('searchTerm')
+input.addEventListener('keypress', function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+
+    var inputEl = document.getElementById('searchTerm').value
+    news.fetchNews(inputEl)
+    news.fetchCryptoPrice(inputEl)
+    news.fetchCryptoName(inputEl)
+
+  }
+
+})
+
 
 
 
