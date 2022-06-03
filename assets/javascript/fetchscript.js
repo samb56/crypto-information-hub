@@ -8,8 +8,6 @@
 // display the previous 5 listed searches
 
 
-// "coinAPIKey": "82f8a3f8adcf8fa7192f7ff08c83b12b"
-
 
 let news = {
 
@@ -24,16 +22,24 @@ let news = {
       .then(data => {
         // the actual data from the api
         var newsContent = JSON.parse(data.contents)
-        console.log(newsContent)
+        // console.log(newsContent)
 
         const { name } = newsContent.articles[0].source
-        const { author, title, url, content } = newsContent.articles[0]
+        const { author, title, url, content, urlToImage } = newsContent.articles[0]
 
-        document.getElementById("articleTitle").innerText = "Title: " + title + ""
-        document.getElementById("newsSource").innerText = "Published by: " + name + ""
-        document.getElementById("authorSource").innerText = "Author: " + author + ""
-        document.getElementById("description").innerText = "Article information: " + content + ""
-        document.getElementById('url').innerHTML = url
+
+        document.getElementById("author").innerText = "Author: " + author + ""
+        document.getElementById("searchTitle").innerText = "Title: " + title + ""
+        document.getElementById('searchContent').innerText = content
+        document.getElementById('articleURL').innerText = url
+        document.getElementById('imageURL').innerText = urlToImage
+
+        // Sample syntax to display elements
+        // document.getElementById("userSearchData").innerText = "Title: " + title + ""
+        // document.getElementById("newsSource").innerText = "Published by: " + name + ""
+        // document.getElementById("authorSource").innerText = "Author: " + author + ""
+        // document.getElementById("description").innerText = "Article information: " + content + ""
+        // document.getElementById('url').innerHTML = url
 
 
 
@@ -42,8 +48,8 @@ let news = {
   // function to search for crypto data.
   // End point are the search parameters passed in the URL for specific articles/information
   // https://coinlayer.com/documentation
-  fetchCrypto: function () {
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/live?access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
+  fetchCryptoPrice: function (term) {
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/live?&symbols=' + term + '&access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
       .then(response => {
         if (response.ok) return response.json()
         throw new Error('Network response was not ok.')
@@ -52,13 +58,72 @@ let news = {
       .then(data => {
         var cryptoData = JSON.parse(data.contents)
         console.log(cryptoData)
+
+
+        // Display Crypto Price for search term. Problem the way to extra the price is the name of the crypto itself, How do you list the term as the thing to pull out?
+        document.getElementById("cryptoPrice1").innerText = "Current Price of BTC: " + cryptoData.rates
+        // document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH
+        // document.getElementById("cryptoPrice3").innerText = "Current Price of BNB: " + BNB
+        // document.getElementById("cryptoPrice4").innerText = "Current Price of DOGE: " + DOGE
+        // document.getElementById("cryptoPrice5").innerText = "Current Price of ADA: " + ADA
+      })
+
+  },
+
+  fetchCryptoName: function (term) {
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/list?&symbols=' + term + '&access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Term not accepeted')
+      })
+      .then(data => {
+        var nameData = JSON.parse(data.contents)
+        console.log(nameData)
+
+        document.getElementById('cryptoPrice2').innerText = "Full Market Name: " + nameData.crypto.BTC.name_full
+
+
       })
 
   }
+
 }
 
+// Grabbing user input for search terms
+document.getElementById("searchBtn").onclick = function () {
+  event.preventDefault()
 
-  // fetch data from cryptoapi
+  var inputEl = document.getElementById('searchTerm').value
+  news.fetchNews(inputEl)
+  news.fetchCryptoPrice(inputEl)
+  news.fetchCryptoName(inputEl)
+
+}
+
+// search by enter button
+
+var input = document.getElementById('searchTerm')
+input.addEventListener('keypress', function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+
+    var inputEl = document.getElementById('searchTerm').value
+    news.fetchNews(inputEl)
+    news.fetchCryptoPrice(inputEl)
+    news.fetchCryptoName(inputEl)
+
+  }
+
+})
 
 
 
+
+// Show crypto prices for top 5 on page load
+// window.onload = news.fetchCrypto(){
+//   document.getElementById("cryptoPrice1").innerText = "Current Price: " + BTC
+//   document.getElementById("cryptoPrice2").innerText = "Current Price: " + ETH
+//   document.getElementById("cryptoPrice3").innerText = "Current Price: " + BNB
+//   document.getElementById("cryptoPrice4").innerText = "Current Price: " + BUSD
+//   document.getElementById("cryptoPrice5").innerText = "Current Price: " + ADA
+// }
