@@ -6,10 +6,22 @@ var conversionOutput = document.querySelector(".conversionOutput")
 
 
 convertBtn.onclick = function () {
-  var conversionArray = []
-  fetch("https://min-api.cryptocompare.com/data/price?fsym=" + inputCurrency.value + "&tsyms=" + outputCurrency.value + "&api_key=ee406096203e27f9935de6f6935f753a2fc052509cd86144e14cda932d08007d")
-    .then(response => response.json())
-    .then(gatherData())
+
+
+  fetch("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + inputCurrency.value + "&tsyms=" + outputCurrency.value + "&api_key=ee406096203e27f9935de6f6935f753a2fc052509cd86144e14cda932d08007d")
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      var currencyData = data;
+      let inputText = inputCurrency.value
+      let outputText = outputCurrency.value
+      // The Price is here:
+      conversionOutput.textContent = currencyData.DISPLAY[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
+
+    })
+
+
 
 
 
@@ -17,16 +29,17 @@ convertBtn.onclick = function () {
 
 }
 
+function displayData(data) {
+  var conversionArray = []
 
-function gatherData(data) {
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     const conversionData = data[i];
-    conversionArray.push(conversionData);
+    ConversionArray.push(conversionData);
     console.log(conversionData);
   }
-  console.log(conversionArray)
 }
 
-// fetch("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR,ETH,DOGE&api_key=ee406096203e27f9935de6f6935f753a2fc052509cd86144e14cda932d08007d")
+// fetch("https://coinlib.io/api/v1/coin?key=2f9de1b530ec0de0&pref=EUR&symbol=BTC")
 //   .then(response => response.json())
-//   .then(data => console.log(data));aaaasw
+//   .then(data => dataArray = [data.symbol, data.price])
+//   .then(console.log(dataArray))
