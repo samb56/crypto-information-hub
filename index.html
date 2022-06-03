@@ -21,9 +21,9 @@
       <div class="four columns">
 
         <div class="searchbar" style="display: flex ;">
-          <input type="search" class="searchInput" placeholder="search crypto news here"<input
+          <input type="search" class="searchInput" id="searchTerm" placeholder="search crypto news here"<input
             class="">
-          <button class="button " style="background-color: #507DBC; color: white;" type="button">search</button>
+          <button class="button " id="searchBtn" style="background-color: #507DBC; color: white;" type="button">search</button>
         
         </div>
         
@@ -34,10 +34,22 @@
 
         <!--display boxes-->
       </div>
-      <div class="eight columns u-full-width" style="padding-right: 0px;">img elements
+      <div class="eight columns u-full-width" id="input" style="padding-right: 0px;">img elements
         <div style="display:flex;">
-          <div class="box one-half column">sample <img src="..." alt="samle"></div>
-          <div class="box one-half column">sample <img src="..." alt="sample"></div>
+          <div class="box one-half column">sample <img src="..." alt="samle">
+            <h1 id="searchTitle"></h1>
+            <h4 id="author"></h4>
+            <p id="searchContent"></p>
+          
+          </div>
+          <div class="box one-half column">sample <img src="..." alt="sample">
+            <h2 id="cryptoPrice1"></h2>
+            <h2 id="cryptoPrice2"></h2>
+            <h2 id="cryptoPrice3"></h2>
+            <h2 id="cryptoPrice4"></h2>
+            <h2 id="cryptoPrice5"></h2>
+          
+          </div>
         </div>
         
         <div class="row">
@@ -57,5 +69,8 @@
 
   
 </body>
+
+<!-- Script Declaration -->
 <script src="./assets/javascript/script.js"></script>
+<script src="/assets/javascript/fetchscript.js"></script>
 </html>

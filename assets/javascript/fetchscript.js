@@ -29,11 +29,17 @@ let news = {
         const { name } = newsContent.articles[0].source
         const { author, title, url, content } = newsContent.articles[0]
 
-        document.getElementById("articleTitle").innerText = "Title: " + title + ""
-        document.getElementById("newsSource").innerText = "Published by: " + name + ""
-        document.getElementById("authorSource").innerText = "Author: " + author + ""
-        document.getElementById("description").innerText = "Article information: " + content + ""
-        document.getElementById('url').innerHTML = url
+
+        document.getElementById("author").innerText = "Author: " + author + ""
+        document.getElementById("searchTitle").innerText = "Title: " + title + ""
+        document.getElementById('searchContent').innerText = content
+
+        // Sample syntax to display elements
+        // document.getElementById("userSearchData").innerText = "Title: " + title + ""
+        // document.getElementById("newsSource").innerText = "Published by: " + name + ""
+        // document.getElementById("authorSource").innerText = "Author: " + author + ""
+        // document.getElementById("description").innerText = "Article information: " + content + ""
+        // document.getElementById('url').innerHTML = url
 
 
 
@@ -51,14 +57,35 @@ let news = {
       // Actual data from api
       .then(data => {
         var cryptoData = JSON.parse(data.contents)
-        console.log(cryptoData)
+        console.log(cryptoData.rates)
+
+        const { BTC, ETH, BNB, BUSD, ADA } = cryptoData.rates
+
+        // Display Crypto Price for search term
+        document.getElementById("cryptoPrice1").innerText = "Current Price: " + BTC
       })
 
   }
 }
 
+// Grabbing user input for search terms
+document.getElementById("searchBtn").onclick = function () {
+  event.preventDefault()
+
+  var inputEl = document.getElementById('searchTerm').value
+  news.fetchNews(inputEl)
+  news.fetchCrypto(inputEl)
+
+}
+
 
   // fetch data from cryptoapi
 
-
-
+// Show crypto prices for top 5 on page load
+// window.onload = news.fetchCrypto(){
+//   document.getElementById("cryptoPrice1").innerText = "Current Price: " + BTC
+//   document.getElementById("cryptoPrice2").innerText = "Current Price: " + ETH
+//   document.getElementById("cryptoPrice3").innerText = "Current Price: " + BNB
+//   document.getElementById("cryptoPrice4").innerText = "Current Price: " + BUSD
+//   document.getElementById("cryptoPrice5").innerText = "Current Price: " + ADA
+// }
