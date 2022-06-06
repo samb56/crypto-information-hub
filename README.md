@@ -6,6 +6,8 @@ Our team project is focused around Crypto currency knowledge, we believe that th
 
 In this we utilized local storage to store and dispaly previous searches from the user input so that they can always access their top crypto currency. In addition we utilized several different API's to gather information regarding the searched crypto. Such as full market name, pricing, and etc. We used a new framework called Skeleton for it's ease of use and simplicity to offer a clean and lean design. 
 
+https://github.com/samb56/crypto-information-hub
+
 
 
 ![Capture](https://user-images.githubusercontent.com/3208213/172228705-69e7e0da-e839-4dd0-b4c5-5c809d5cebc8.PNG)
