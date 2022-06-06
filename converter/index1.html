@@ -10,13 +10,15 @@
   <p>example example</p>
 
   <div class="searchbar">
-    <input type="text" class= "inputCurrency" placeholder="choose currency to convert(symbol)" minlength="3" maxlength="8"> 
-      <input type="text" class="outputCurrency" placeholder="choose currency to convert to(symbol)" minlength="3">
+    <input type="number" class="inputAmount" placeholder="enter currency amount" min="1" value="1" >
+    <input type="text" class= "inputCurrency" placeholder="enter currency symbol" minlength="3" maxlength="8"> 
+    <div>converted to</div>
+      <input type="text" class="outputCurrency" placeholder="enter currency symbol" minlength="3">
     <button class="btn convertBtn" type="button">convert</button>
   </div>
   </div>
 
-  <div class="conversionOutput" id="convertedData">
+  <div class="conversionOutput" id="myData">
     
   </div>
 
