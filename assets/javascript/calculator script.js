@@ -37,7 +37,5 @@ function displayData(data) {
 }
 
 
-// fetch("https://coinlib.io/api/v1/coin?key=2f9de1b530ec0de0&pref=EUR&symbol=BTC")
-//   .then(response => response.json())
-//   .then(data => dataArray = [data.symbol, data.price])
-//   .then(console.log(dataArray))
+
+
