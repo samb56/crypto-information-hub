@@ -19,7 +19,7 @@ convertBtn.onclick = function () {
       let outputText = outputCurrency.value
       // The Price is here:
       const conversionRatio = currencyData.RAW[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
-      conversionOutput.textContent =(inputAmount.value * conversionRatio) + outputCurrency.value
+      conversionOutput.textContent = (inputAmount.value * conversionRatio) + outputCurrency.value
 
     })
 
