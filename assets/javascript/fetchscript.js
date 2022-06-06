@@ -31,16 +31,8 @@ let news = {
         document.getElementById("author").innerText = "Author: " + author + ""
         document.getElementById("searchTitle").innerText = "Title: " + title + ""
         document.getElementById('searchContent').innerText = content
-        document.getElementById('articleURL').innerText = url
-        document.getElementById('imageURL').innerText = urlToImage
-
-        // Sample syntax to display elements
-        // document.getElementById("userSearchData").innerText = "Title: " + title + ""
-        // document.getElementById("newsSource").innerText = "Published by: " + name + ""
-        // document.getElementById("authorSource").innerText = "Author: " + author + ""
-        // document.getElementById("description").innerText = "Article information: " + content + ""
-        // document.getElementById('url').innerHTML = url
-
+        document.getElementById('articleURL').setAttribute("href", url)
+        document.getElementById('imageURL').setAttribute("src", urlToImage)
 
 
       })
@@ -57,15 +49,33 @@ let news = {
       // Actual data from api
       .then(data => {
         var cryptoData = JSON.parse(data.contents)
-        console.log(cryptoData)
 
 
         // Display Crypto Price for search term. Problem the way to extra the price is the name of the crypto itself, How do you list the term as the thing to pull out?
-        document.getElementById("cryptoPrice1").innerText = "Current Price of BTC: " + cryptoData.rates
-        // document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH
-        // document.getElementById("cryptoPrice3").innerText = "Current Price of BNB: " + BNB
-        // document.getElementById("cryptoPrice4").innerText = "Current Price of DOGE: " + DOGE
-        // document.getElementById("cryptoPrice5").innerText = "Current Price of ADA: " + ADA
+        document.getElementById("cryptoPrice1").innerText = "Current Price of " + term + ": " + cryptoData.rates[term.toUpperCase()] + " USD"
+      })
+
+  },
+
+  // Grabs other crypto data that is not the search term
+  fetchOtherCrypto: function () {
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/live?access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Network response was not ok.')
+      })
+      .then(data => {
+        var extraCrypto = JSON.parse(data.contents)
+
+        const { ETH, DOGE, BNB, XRP } = extraCrypto.rates
+
+        document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH + " USD"
+        document.getElementById("cryptoPrice3").innerText = "Current Price of DOGE: " + DOGE + " USD"
+        document.getElementById("cryptoPrice4").innerText = "Current Price of BNB: " + BNB + " USD"
+        document.getElementById("cryptoPrice5").innerText = "Current Price of XRP: " + XRP + " USD"
+
+
+
       })
 
   },
@@ -74,13 +84,13 @@ let news = {
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/list?&symbols=' + term + '&access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
       .then(response => {
         if (response.ok) return response.json()
-        throw new Error('Term not accepeted')
+        throw new Error('Term not accepted')
       })
       .then(data => {
         var nameData = JSON.parse(data.contents)
         console.log(nameData)
 
-        document.getElementById('cryptoPrice2').innerText = "Full Market Name: " + nameData.crypto.BTC.name_full
+        document.getElementById('cryptoPrice2').innerText = "Full Market Name: " + nameData.crypto[term.toUpperCase()].name_full
 
 
       })
@@ -97,6 +107,7 @@ document.getElementById("searchBtn").onclick = function () {
   news.fetchNews(inputEl)
   news.fetchCryptoPrice(inputEl)
   news.fetchCryptoName(inputEl)
+  news.fetchOtherCrypto()
 
 }
 
