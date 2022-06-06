@@ -3,7 +3,7 @@ var inputCurrency = document.querySelector(".inputCurrency")
 var outputCurrency = document.querySelector(".outputCurrency")
 var convertBtn = document.querySelector(".convertBtn")
 var conversionOutput = document.querySelector(".conversionOutput")
-
+var inputAmount = document.querySelector(".inputAmount")
 
 convertBtn.onclick = function () {
 
@@ -13,18 +13,15 @@ convertBtn.onclick = function () {
       return response.json()
     })
     .then(data => {
+      console.log(data)
       var currencyData = data;
       let inputText = inputCurrency.value
       let outputText = outputCurrency.value
       // The Price is here:
-      conversionOutput.textContent = currencyData.DISPLAY[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
+      const conversionRatio = currencyData.RAW[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
+      conversionOutput.textContent =(inputAmount.value * conversionRatio) + outputCurrency.value
 
     })
-
-
-
-
-
 
 
 }
@@ -38,6 +35,7 @@ function displayData(data) {
     console.log(conversionData);
   }
 }
+
 
 // fetch("https://coinlib.io/api/v1/coin?key=2f9de1b530ec0de0&pref=EUR&symbol=BTC")
 //   .then(response => response.json())
