@@ -109,6 +109,7 @@ document.getElementById("searchBtn").onclick = function () {
   news.fetchCryptoName(inputEl)
   news.fetchOtherCrypto()
 
+
 }
 
 // search by enter button
