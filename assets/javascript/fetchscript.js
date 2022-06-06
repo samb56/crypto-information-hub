@@ -49,15 +49,33 @@ let news = {
       // Actual data from api
       .then(data => {
         var cryptoData = JSON.parse(data.contents)
-        console.log(cryptoData)
 
 
         // Display Crypto Price for search term. Problem the way to extra the price is the name of the crypto itself, How do you list the term as the thing to pull out?
-        document.getElementById("cryptoPrice1").innerText = "Current Price of BTC: " + cryptoData.rates[term.toUpperCase()]
-        // document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH
-        // document.getElementById("cryptoPrice3").innerText = "Current Price of BNB: " + BNB
-        // document.getElementById("cryptoPrice4").innerText = "Current Price of DOGE: " + DOGE
-        // document.getElementById("cryptoPrice5").innerText = "Current Price of ADA: " + ADA
+        document.getElementById("cryptoPrice1").innerText = "Current Price of " + term + ": " + cryptoData.rates[term.toUpperCase()] + " USD"
+      })
+
+  },
+
+  // Grabs other crypto data that is not the search term
+  fetchOtherCrypto: function () {
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.coinlayer.com/api/live?access_key=d3452b84f4f7a2a7943c8ce004285656')}`)
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Network response was not ok.')
+      })
+      .then(data => {
+        var extraCrypto = JSON.parse(data.contents)
+
+        const { ETH, DOGE, BNB, XRP } = extraCrypto.rates
+
+        document.getElementById("cryptoPrice2").innerText = "Current Price of ETH: " + ETH + " USD"
+        document.getElementById("cryptoPrice3").innerText = "Current Price of DOGE: " + DOGE + " USD"
+        document.getElementById("cryptoPrice4").innerText = "Current Price of BNB: " + BNB + " USD"
+        document.getElementById("cryptoPrice5").innerText = "Current Price of XRP: " + XRP + " USD"
+
+
+
       })
 
   },
@@ -89,6 +107,7 @@ document.getElementById("searchBtn").onclick = function () {
   news.fetchNews(inputEl)
   news.fetchCryptoPrice(inputEl)
   news.fetchCryptoName(inputEl)
+  news.fetchOtherCrypto()
 
 }
 
