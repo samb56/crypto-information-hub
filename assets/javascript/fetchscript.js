@@ -88,6 +88,21 @@ let news = {
   }
 
 }
+//display search history
+
+
+document.getElementById("searchBtn").onclick = function () {
+  console.log("test")
+
+
+  let newSearch = getElementById("searchTerm").value
+
+}
+
+
+
+
+
 
 // Grabbing user input for search terms
 document.getElementById("searchBtn").onclick = function () {
@@ -97,6 +112,8 @@ document.getElementById("searchBtn").onclick = function () {
   news.fetchNews(inputEl)
   news.fetchCryptoPrice(inputEl)
   news.fetchCryptoName(inputEl)
+
+
 
 }
 
@@ -112,9 +129,12 @@ input.addEventListener('keypress', function (event) {
     news.fetchCryptoPrice(inputEl)
     news.fetchCryptoName(inputEl)
 
+
+
   }
 
 })
+
 
 
 
