@@ -17,12 +17,13 @@ In this we utilized local storage to store and dispaly previous searches from th
 5. HTML
 
 
-
+<hr>
 
 https://github.com/samb56/crypto-information-hub
 
 https://samb56.github.io/crypto-information-hub/
 
 
+<hr>
 
 ![Capture](https://user-images.githubusercontent.com/3208213/172228705-69e7e0da-e839-4dd0-b4c5-5c809d5cebc8.PNG)

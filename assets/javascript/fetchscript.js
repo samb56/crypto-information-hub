@@ -26,7 +26,7 @@ let news = {
 
         const { name } = newsContent.articles[0].source
         const { author, title, url, content, urlToImage } = newsContent.articles[0]
-        const { market } = data[0]
+
 
 
         document.getElementById("author").innerText = "Author: " + author + ""
@@ -104,6 +104,15 @@ document.getElementById("searchBtn").onclick = function () {
   event.preventDefault()
 
   var inputEl = document.getElementById('searchTerm').value
+
+
+  //store recent searches
+  var prevSearches = JSON.parse(localStorage.getItem("previous")) || []
+  prevSearches.push(inputEl)
+  localStorage.setItem("previous", JSON.stringify(prevSearches.slice(-5)))
+  displayPrevSearch()
+
+
   news.fetchNews(inputEl)
   news.fetchCryptoPrice(inputEl)
   news.fetchCryptoName(inputEl)
@@ -127,6 +136,26 @@ input.addEventListener('keypress', function (event) {
   }
 
 })
+
+
+function displayPrevSearch() {
+
+  var searchDisplay = document.getElementById('prevSearch')
+  searchDisplay.innerHTML = ''
+  searchHistory = JSON.parse(localStorage.getItem("previous"))
+
+
+  for (var i = 0; i < searchHistory.length; i++) {
+    var prevLinks = document.createElement("div");
+    prevLinks.classList.add("SearchHistory")
+    prevLinks.innerHTML = '<button onClick = "news.fetchNews(\'' + searchHistory[searchHistory.length - i - 1] + '\')">' +
+      searchHistory[searchHistory.length - i - 1] + ' </button>'
+    searchDisplay.append(prevLinks)
+
+  }
+
+}
+
 
 
 
