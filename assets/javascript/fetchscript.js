@@ -1,5 +1,3 @@
-//Variable declaration
-
 
 // 1. Fetch Api's for news and crypto
 // Create/link buttons to search for various topics based on user input (Include click and enter key as submission types)
@@ -22,7 +20,6 @@ let news = {
       .then(data => {
         // the actual data from the api
         var newsContent = JSON.parse(data.contents)
-        // console.log(newsContent)
 
         const { name } = newsContent.articles[0].source
         const { author, title, url, content, urlToImage } = newsContent.articles[0]
@@ -49,9 +46,6 @@ let news = {
       // Actual data from api
       .then(data => {
         var cryptoData = JSON.parse(data.contents)
-
-
-        // Display Crypto Price for search term. Problem the way to extra the price is the name of the crypto itself, How do you list the term as the thing to pull out?
         document.getElementById("cryptoPrice1").innerText = "Current Price of " + term + ": " + cryptoData.rates[term.toUpperCase()] + " USD"
       })
 
@@ -73,9 +67,6 @@ let news = {
         document.getElementById("cryptoPrice3").innerText = "Current Price of DOGE: " + DOGE + " USD"
         document.getElementById("cryptoPrice4").innerText = "Current Price of BNB: " + BNB + " USD"
         document.getElementById("cryptoPrice5").innerText = "Current Price of XRP: " + XRP + " USD"
-
-
-
       })
 
   },
@@ -137,7 +128,7 @@ input.addEventListener('keypress', function (event) {
 
 })
 
-
+//Local storage saving functionality and display as buttons underneath search bar
 function displayPrevSearch() {
 
   var searchDisplay = document.getElementById('prevSearch')
@@ -155,16 +146,3 @@ function displayPrevSearch() {
   }
 
 }
-
-
-
-
-
-// Show crypto prices for top 5 on page load
-// window.onload = news.fetchCrypto(){
-//   document.getElementById("cryptoPrice1").innerText = "Current Price: " + BTC
-//   document.getElementById("cryptoPrice2").innerText = "Current Price: " + ETH
-//   document.getElementById("cryptoPrice3").innerText = "Current Price: " + BNB
-//   document.getElementById("cryptoPrice4").innerText = "Current Price: " + BUSD
-//   document.getElementById("cryptoPrice5").innerText = "Current Price: " + ADA
-// }
