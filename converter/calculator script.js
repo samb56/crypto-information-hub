@@ -5,6 +5,7 @@ var convertBtn = document.querySelector(".convertBtn")
 var conversionOutput = document.querySelector(".conversionOutput")
 var inputAmount = document.querySelector(".inputAmount")
 
+
 convertBtn.onclick = function () {
 
 
@@ -19,12 +20,13 @@ convertBtn.onclick = function () {
       let outputText = outputCurrency.value
       // The Price is here:
       const conversionRatio = currencyData.RAW[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
-      conversionOutput.textContent = (inputAmount.value * conversionRatio) + outputCurrency.value
+      conversionOutput.textContent = currencyData.DISPLAY[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].TOSYMBOL + ' ' + (inputAmount.value * conversionRatio).toLocaleString("en-US")
 
     })
 
-
 }
+
+
 
 function displayData(data) {
   var conversionArray = []
