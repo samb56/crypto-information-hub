@@ -26,6 +26,7 @@ let news = {
 
         const { name } = newsContent.articles[0].source
         const { author, title, url, content, urlToImage } = newsContent.articles[0]
+        const { market } = data[0]
 
 
         document.getElementById("author").innerText = "Author: " + author + ""
@@ -33,7 +34,6 @@ let news = {
         document.getElementById('searchContent').innerText = content
         document.getElementById('articleURL').setAttribute("href", url)
         document.getElementById('imageURL').setAttribute("src", urlToImage)
-
 
       })
   },
