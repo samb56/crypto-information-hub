@@ -6,7 +6,13 @@
 // Grab images/graphs from crypto api to display fluctuating prices for the coin
 // Use local storage to save the past couple of searches from user input 
 // display the previous 5 listed searches
+var clearBtn = document.getElementById("clearBtn")
 
+
+clearBtn.onclick = function clearHistory() {
+  localStorage.clear();
+  prevSearch.innerHTML = ""
+}
 
 
 let news = {
@@ -162,6 +168,7 @@ function displayPrevSearch() {
   var searchDisplay = document.getElementById('prevSearch')
   searchDisplay.innerHTML = ''
   searchHistory = JSON.parse(localStorage.getItem("previous"))
+
 
 
   for (var i = 0; i < searchHistory.length; i++) {
