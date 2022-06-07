@@ -5,6 +5,13 @@
 // Use local storage to save the past couple of searches from user input 
 // display the previous 5 listed searches
 
+var clearBtn = document.getElementById("clearBtn")
+
+
+clearBtn.onclick = function clearHistory() {
+  localStorage.clear();
+  prevSearch.innerHTML = ""
+}
 
 
 let news = {
