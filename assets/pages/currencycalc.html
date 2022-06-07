@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto News and Data</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+
+<body class="content">
+  <div class="banner">
+    <h1 style="text-align:center">Welcome to your Crypto Update</h1>
+    <h4 style="text-align:center">Easy currency calculations between crypto!</h4>
+  </div>
+
+  <div class="container content" style="margin-left: 0px; margin-right: 0px; width: 100%;">
+    <div class="row">
+      <div class="four columns">
+
+
+        <a href="../../index.html" class="navbtn button">Home</a>
+        <a href="./currencycalc.html" class="navbtn button">Currency Calculator</a>
+        <a href="./news.html" class="navbtn button">Crypto News</a>
+        <a href="./Crypto-Index.html" class="navbtn button">Crypto Index</a>
+
+      </div>
+
+
+      <div class=" eight columns searchbar">
+        <input type="number" class="inputAmount" placeholder="enter currency amount" min="1" value="1">
+        <input type="text" class="inputCurrency" placeholder="Enter currency symbol" minlength="3" maxlength="8">
+        <div>Converted too</div>
+        <input type="text" class="outputCurrency" placeholder="enter currency symbol" minlength="3">
+        <button class="btn convertBtn" type="button">Convert</button>
+        <!-- <div class="conversionOutput"></div> -->
+
+        <div class="conversionOutput smallBox shadow center" id="myData">You're currency is....</div>
+
+      </div>
+      
+      
+
+
+    </div>
+
+
+
+  </div>
+
+  </div>
+
+
+
+  </div>
+
+
+
+</body>
+
+<!-- Script Declaration -->
+
+<script src="../javascript/fetchscript.js"></script>
+<script src="../javascript/calculator script.js"></script>
+
+</html>

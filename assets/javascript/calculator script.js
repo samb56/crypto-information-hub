@@ -19,12 +19,13 @@ convertBtn.onclick = function () {
       let outputText = outputCurrency.value
       // The Price is here:
       const conversionRatio = currencyData.RAW[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].PRICE
-      conversionOutput.textContent = (inputAmount.value * conversionRatio) + outputCurrency.value
+      conversionOutput.textContent = currencyData.DISPLAY[inputCurrency.value.toUpperCase()][outputCurrency.value.toUpperCase()].TOSYMBOL + ' ' + (inputAmount.value * conversionRatio).toLocaleString("en-US")
 
     })
 
-
 }
+
+
 
 function displayData(data) {
   var conversionArray = []
@@ -37,5 +38,7 @@ function displayData(data) {
 }
 
 
-
-
+// fetch("https://coinlib.io/api/v1/coin?key=2f9de1b530ec0de0&pref=EUR&symbol=BTC")
+//   .then(response => response.json())
+//   .then(data => dataArray = [data.symbol, data.price])
+//   .then(console.log(dataArray))
