@@ -26,62 +26,56 @@
         <div class="searchbar" style="display: flex ;">
           <input type="search" class="searchInput" id="searchTerm" placeholder="Search Crypto ID i.e BTC">
           <button class="button " id="searchBtn" style="background-color: #507DBC; color: white;" type="button">search</button>
-        
         </div>
-        
-        <a href="./assets/pages/currencycalc.html" class="navbtn button">Currency Calculator</a>
-        <a href="./assets/pages/news.html" class="navbtn button">Crypto News</a>
-        <a href="./assets/pages/Crypto-Index.html" class="navbtn button">Crypto Index</a>
-        
+
+        <div id="prevSearch"></div>
+        <a href="./assets/pages/currencycalc.html" class="navbtn button"  >Currency Calculator</a>
+        <a href="./assets/pages/news.html" class="navbtn button"  >Crypto News</a>
+        <a href="./assets/pages/news.html" class="navbtn button">Crypto Index</a>
 
         <!--display boxes-->
       </div>
       <!-- Current Search Box -->
       <div class="eight columns u-max-full-width center" id="input" style="padding-right: 0px">
-        <div style="display:flex">
-          <div class="box one-half column"><img src="..." alt="">
-            <h3 id="searchTitle">Title: </h3>
-            <h5 id="author">Author: </h5>
+        <div class = "leftPush" style="display:flex">
+          <div class="box one-half column shadow"><img src="..." alt="">
+            <h3 id="searchTitle" class="center">Articles</h3>
+            <h5 id="author"> </h5>
             <p id="searchContent"></p>
             <!-- searched term article image should display with this line. How to get image url from api and place in href -->
             <a  href ="" id="articleURL">
-              <img src="" alt="" target="_blank" id="imageURL" style="width:250px; height:250px;">
-
-            </a>
-
+              <img src="" alt="" target="_blank" id="imageURL" style="width:250px; height:250px;"></a>
           </div>
 
           <!-- Trending Crypto box -->
-          <div class="box one-half column"><img src="..." alt="">
-            <h4 style="text-align:center;">Crypto Prices</h4>
+          <div class="box one-half column shadow"><img src="..." alt="">
+            <h3 class="center ">Crypto Prices</h3>
             <hr>
             <p id="cryptoPrice1"></p>
             <p id="cryptoPrice2"></p>
             <p id="cryptoPrice3"></p>
             <p id="cryptoPrice4"></p>
             <p id="cryptoPrice5"></p>
-          
           </div>
-        </div>
-        
 
+        </div>
       </div>
 
-      <div class="row">
-        <div class="box twelve columns"> 
-          <img src="/assets/Images/crypto.png" alt="">
-        
-        </div>
+      <div class="row center">
+          <img class="shadow" src="./assets/Images/crypto.png" alt="">
       </div>
 
     </div>
-    
-
-
+  
   </div>
   
-
+  <hr>
   
+  <footer class="footer">
+    <h6>2022 Team Awesome ❤️</h6>
+    <h6>Sam, Noah,Greg, Kevin</h6>
+  </footer>
+
 </body>
 
 <!-- Script Declaration -->

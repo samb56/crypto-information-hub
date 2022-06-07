@@ -17,7 +17,7 @@
 <body class="content">
   <div class="banner">
     <h1 style="text-align:center">Welcome to your Crypto Update</h1>
-    <h4 style="text-align:center">The one stop shop for your crypto news and information</h4>
+    <h4 style="text-align:center">Easy currency calculations between crypto!</h4>
   </div>
 
   <div class="container content" style="margin-left: 0px; margin-right: 0px; width: 100%;">
@@ -31,6 +31,21 @@
         <a href="./Crypto-Index.html" class="navbtn button">Crypto Index</a>
 
       </div>
+
+
+      <div class=" eight columns searchbar">
+        <input type="number" class="inputAmount" placeholder="enter currency amount" min="1" value="1">
+        <input type="text" class="inputCurrency" placeholder="Enter currency symbol" minlength="3" maxlength="8">
+        <div>Converted too</div>
+        <input type="text" class="outputCurrency" placeholder="enter currency symbol" minlength="3">
+        <button class="btn convertBtn" type="button">Convert</button>
+        <!-- <div class="conversionOutput"></div> -->
+
+        <div class="conversionOutput smallBox shadow center" id="myData">You're currency is....</div>
+
+      </div>
+      
+      
 
 
     </div>
@@ -52,5 +67,6 @@
 <!-- Script Declaration -->
 <script src="./assets/javascript/script.js"></script>
 <script src="./assets/javascript/fetchscript.js"></script>
+<script src="/converter/calculator script.js"></script>
 
 </html>
